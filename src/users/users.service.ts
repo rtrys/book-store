@@ -19,7 +19,11 @@ export class UsersService {
   async getAll(): Promise<UserRO[]> {
     const users = await this.usersModel.find();
     return users.map(item => this.createResponseObject(item));
+  }
 
+  async getById(id: string): Promise<UserRO> {
+    const user = await this.usersModel.findById(id);
+    return this.createResponseObject(user);
   }
 
   async removeById(id: string): Promise<UserRO> {
